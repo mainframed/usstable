@@ -26,21 +26,62 @@
 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 * Declaring Kick-Ass Color to make sweet-sweet art with   - SoF     *
 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-&BLUE    SETC  'X''2902C0F842F1'''       SFE HI,SKIP,BLUE
-&RED     SETC  'X''2902C0F842F2'''       SFE HI,SKIP,RED
-&PINK    SETC  'X''2902C0F842F3'''       SFE HI,SKIP,PINK
-&GREEN   SETC  'X''2902C0F842F4'''       SFE HI,SKIP,GREEN
-&TURQ    SETC  'X''2902C0F842F5'''       SFE HI,SKIP,TURQ
-&YELLOW  SETC  'X''2902C0F842F6'''       SFE HI,SKIP,YELLOW
-&WHITE   SETC  'X''2902C0F842F7'''       SFE HI,SKIP,WHITE
-&BLACK   SETC  'X''2902C0F842F8'''       SFE HI,SKIP,BLACK
-&DBLUE   SETC  'X''2902C0F842F9'''       SFE HI,SKIP,DBLUE
-&ORANGE  SETC  'X''2902C0F842FA'''       SFE HI,SKIP,ORANGE
-&PURPLE  SETC  'X''2902C0F842FB'''       SFE HI,SKIP,PURPLE
-&LGREEN  SETC  'X''2902C0F842FC'''       SFE HI,SKIP,LGREEN
-&LTURQ   SETC  'X''2902C0F842FD'''       SFE HI,SKIP,LTURQ
-&GREY    SETC  'X''2902C0F842FE'''       SFE HI,SKIP,GREY
-&BWHITE  SETC  'X''2902C0F842FF'''       SFE HI,SKIP,WHITE
+&COLOR   SETC  'X''2903C0F8'  x29 Set Field Extended (SFE)
+*                             x03 Three Attributes
+*                             xC0F8 Set Attributes
+* The remaining SFE are pairs. 
+*                  - x45nn is background color
+*                  - x42nn is foreground color
+* Since &COLOR Declares three attributes you must always specify &BG
+* before the &<color>. I.E. &COLOR&BG&RED
+*
+* Backgrounds
+*
+&BG      SETC  '4500'         Black Background
+&BGBL    SETC  '45F1'         Blue Background
+&BGRED   SETC  '45F2'         Red Background
+&BGPINK  SETC  '45F3'         Pink Background
+&BGGREEN SETC  '45F4'         Green Background
+&BGTURQ  SETC  '45F5'         Turq Background
+&BGYELL  SETC  '45F6'         Yellow Background
+&BGWHITE SETC  '45F7'         White Background
+*
+* Colors
+*
+&BLUE    SETC  '42F1'''       BLUE
+&RED     SETC  '42F2'''       RED
+&PINK    SETC  '42F3'''       PINK
+&GREEN   SETC  '42F4'''       GREEN
+&TURQ    SETC  '42F5'''       TURQ
+&YELLOW  SETC  '42F6'''       YELLOW
+&WHITE   SETC  '42F7'''       WHITE
+&BLACK   SETC  '42F8'''       BLACK
+&DBLUE   SETC  '42F9'''       DBLUE
+&ORANGE  SETC  '42FA'''       ORANGE
+&PURPLE  SETC  '42FB'''       PURPLE
+&LGREEN  SETC  '42FC'''       LGREEN
+&LTURQ   SETC  '42FD'''       LTURQ
+&GREY    SETC  '42FE'''       GREY
+&BWHITE  SETC  '42FF'''       BOLDWHITE
+* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+* Declaring Graphic lines - JBX                                     *
+* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+&UPRIGHT    SETC  'X''08D5'''            UPPER RIGHT CORNER
+&DOWNRIGHT  SETC  'X''08D4'''            UPPER RIGHT CORNER
+&UPLEFT     SETC  'X''08C5'''            UPPER RIGHT CORNER
+&DOWNLEFT   SETC  'X''08C4'''            UPPER RIGHT CORNER
+&HBAR       SETC  'X''08A2'''            HORZ BAR
+&VBAR       SETC  'X''0885'''            VIRT BAR
+* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+* Adding More Graphics - SoF                                        *
+* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+&EBLOCK  SETC  'X''0890'''             Empty Block
+&LBLOCK  SETC  'X''0891'''             Left Half Block ANSI ALT+221
+&RBLOCK  SETC  'X''0892'''             Right Half Block ANSI ALT+222
+&TBLOCK  SETC  'X''0893'''             Top Half Block ANSI ALT+220
+&BBLOCK  SETC  'X''0894'''             Bottom Half Block ANSI ALT+223
+&BLOCK   SETC  'X''0895'''             Full Block ANSI ALT+219
+&SQUARE  SETC  'X''0895'''             Full Block ANSI ALT+254
 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 &BFNAME  SETC  'BUF'.'&MSG'
 &BFBEGIN SETC  '&BFNAME'.'B'
@@ -50,88 +91,99 @@
 &BFBEGIN EQU   *                       START OF MESSAGE
          DC    X'F57A'                 ERASE/WRITE, WCC
          DC    X'110000'               SBA, 0000     ROW 00 COL 01
-         DC &BLUE
-         DC C'======> BLUE           (F1) -------'
-         DC C'--------------------------------------------'
-         DC &RED
-         DC C'======> RED            (F2) -------'
-         DC C'--------------------------------------------'
-         DC &PINK
-         DC C'======> PINK           (F3) -------'
-         DC C'--------------------------------------------'
-         DC &GREEN
-         DC C'======> GREEN          (F4) -------'
-         DC C'--------------------------------------------'
-         DC &TURQ
-         DC C'======> TURQUOISE      (F5) -------'
-         DC C'--------------------------------------------'
-         DC &YELLOW
+         DC &COLOR&BG&BLUE
+         DC C'======> BLUE           (F1) '
+         DC 51C'-'
+         DC &COLOR&BGBL&RED
+         DC C'======> RED            (F2) '
+         DC 51C'-'
+         DC &COLOR&BGGREEN&PINK
+         DC C'======> PINK           (F3) '
+         DC 51C'-'
+         DC &COLOR&BG&GREEN
+         DC C'======> GREEN          (F4) '
+         DC 51C'-'
+         DC &COLOR&BG&TURQ
+         DC C'======> TURQUOISE      (F5) '
+         DC 51C'-'
+         DC &COLOR&BGTURQ&YELLOW
          DC C'======> YELLOW         (F6) ------ '
          DC C'           ----------------             ----'
-         DC &WHITE
+         DC &COLOR&BG&WHITE
          DC C'======> WHITE          (F7) ------ '
          DC C'    -----------------------     ------------'
-         DC &GREY
+         DC &COLOR&BGWHITE&GREY
          DC C'======> GREY           (FE) ------ '
          DC C'           ---         ----         --------'
-         DC &DBLUE
-         DC C'======> DARK BLUE      (F9) -------'
+         DC &COLOR&BGRED&DBLUE
+         DC C'======> DARK BLUE      (F9) ------ '
          DC C'-------    ---   ---   ----     ------------'
-         DC &ORANGE
+         DC &COLOR&BG&ORANGE
          DC C'======> ORANGE         (FA) ------ '
          DC C'           ---         ----     ------------'
-         DC &PURPLE
-         DC C'======> PURPLE         (FB) -------'
-         DC C'--------------------------------------------'
-         DC &LGREEN
-         DC C'======> LIGHT GREEN    (FC) -------'
-         DC C'--------------------------------------------'
-         DC &LTURQ
-         DC C'======> LIGHT TURQ     (FD) -------'
-         DC C'--------------------------------------------'
-         DC &BWHITE
-         DC C'======> WHITE          (FF) -------'
-         DC C'--------------------------------------------'
-         DC &BLACK
-         DC C'======> BLACK          (F8) -------'
-         DC C'--------------------------------------------'
-         DC &TURQ
+         DC &COLOR&BG&PURPLE
+         DC C'======> PURPLE         (FB) '
+         DC 51C'-'
+         DC &COLOR&BG&LGREEN
+         DC C'======> LIGHT GREEN    (FC) '
+         DC 51C'-'
+         DC &COLOR&BGYELL&LTURQ
+         DC C'======> LIGHT TURQ     (FD) '
+         DC 51C'-'
+         DC &COLOR&BG&BWHITE
+         DC C'======> WHITE          (FF) '
+         DC 51C'-'
+         DC &COLOR&BGPINK&BLACK
+         DC C'======> BLACK          (F8) '
+         DC 51C'-'
+         DC &COLOR&BG&TURQ
          DC C'======> Weird Chars: '
 * These are the weird chars cent and weird line
          DC X'4A5F4F6ABBFB70728B'
          DC X'B1B2B3B68A'
-         DC C'                                            '
-         DC C'                                     '
-         DC C'                                           '
-         DC &YELLOW
+         DC &UPRIGHT
+         DC &DOWNRIGHT
+         DC &UPLEFT
+         DC &DOWNLEFT
+         DC &HBAR
+         DC &VBAR
+         DC &EBLOCK
+         DC &LBLOCK
+         DC &RBLOCK
+         DC &TBLOCK
+         DC &BBLOCK
+         DC &BLOCK
+         DC &SQUARE
+         DC 111C' '
+         DC &COLOR&BG&YELLOW
          DC C'======> Special Chars: .,<>()+-!$*;:-/\%_?`#@'''
          DC C'="~{}                            '
          DC C'                                     '
          DC C'                                           '
-         DC &GREEN
+         DC &COLOR&BG&GREEN
          DC C'======> Normal Chars:  ABCDEFGHIJKL'
          DC C'MNOPQRSTUVWXYZ                              '
          DC C' ======>                abcdefghijk'
          DC C'lmnopqrstuvwxyz                              '
          DC C' ======>                0123456789 '
          DC C'                                             '
-         DC &WHITE
+         DC &COLOR&BG&WHITE
          DC C'To change colors you need a'
-         DC &TURQ
+         DC &COLOR&BG&TURQ
          DC C'S'
-         DC &BLUE
+         DC &COLOR&BG&BLUE
          DC C'P'
-         DC &YELLOW
+         DC &COLOR&BG&YELLOW
          DC C'A'
-         DC &PINK
+         DC &COLOR&BG&PINK
          DC C'C'
-         DC &RED
+         DC &COLOR&BG&RED
          DC C'E'
-         DC &WHITE
+         DC &COLOR&BG&WHITE
          DC C'between each change... yay               '
-         DC &PINK
+         DC &COLOR&BG&PINK
          DC C'CoMMaNd ===>'
-         DC &GREEN
+         DC &COLOR&BG&GREEN
          DC    X'290242FCC0C8'         SFE, UNPROTECTED/NORMAL/YELLOW
          DC    X'13'                   INSERT CURSOR
          DC    C&TEXT                  USS MESSAGES
